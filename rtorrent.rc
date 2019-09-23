@@ -1,0 +1,168 @@
+# This config file uses the new syntax which requires rTorrent version 0.8.7 or newer
+# Version 0.9.2 or newer is required to be able to use every syntax shown here
+
+# This file is just a simple template to get you started
+# There are many more things which you can do with this config file as shown here
+# Uncomment lines which you wish to use
+
+# Default directory to save the downloaded torrents
+#directory = ./
+
+# Default session directory
+# NOTE: Make sure you don't run multiple instances of rtorrent using the same session directory
+#session = ./session
+
+# Load ruTorrent plugins when rtorrent starts
+# See code.google.com/p/rutorrent/wiki/Plugins#Starting_plugins_with_rtorrent
+#execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php &}
+
+# Restart torrents that have been copied back and stop those that have been deleted
+#schedule = tied_directory,1,20,start_tied=
+#schedule = untied_directory,1,20,close_untied=
+
+# Close torrents when diskspace is low
+#schedule = low_diskspace,10,30,close_low_diskspace=10000M
+
+# Stop torrents when reaching upload ratio in percent,
+# when also reaching total upload in bytes, or when
+# reaching final upload ratio in percent.
+#schedule = ratio,10,10,"stop_on_ratio=200,50M,300"
+
+# Check hash of finished torrents
+#check_hash = yes
+
+# Minimum and maximum number of peers to connect to per torrent
+#min_peers = 10
+#max_peers = 40
+
+# Same as above but for seeding completed torrents (-1 for same as downloading)
+#min_peers_seed = 1
+#max_peers_seed = 20
+
+# Maximum number of simultanious uploads per torrent
+#max_uploads = 20
+
+# Global upload and download rate in KiB (0 for unlimited)
+#upload_rate = 400
+#download_rate = 5000
+
+# Port range to use for listening.
+#port_range = 55020-55025
+
+# Start opening ports at a random position within the port range.
+#port_random = yes
+
+# Set whetever the client should try to connect to UDP trackers.
+trackers.use_udp.set = yes
+
+# The ip address reported to the tracker.
+#ip = 127.0.0.1
+#ip = rakshasa
+
+# Sets the numwant field sent to the tracker
+# Tells the tracker how many addresses the client wants in the tracker's response
+# The tracker does not have to supply that many
+#tracker_numwant = 50
+
+# Alternative calls to bind and ip that should handle dynamic ip's.
+#schedule = ip_tick,0,1800,ip=rakshasa
+#schedule = bind_tick,0,1800,bind=rakshasa
+
+# Encryption options, set to none (default) or any combination of the following:
+# allow_incoming, try_outgoing, require, require_RC4, enable_retry, prefer_plaintext
+#
+# The example value allows incoming encrypted connections, starts unencrypted
+# outgoing connections but retries with encryption if they fail, preferring
+# plaintext to RC4 encryption after the encrypted handshake
+encryption = allow_incoming,try_outgoing,enable_retry
+
+# Enable DHT support for trackerless torrents or when all trackers are down.
+# May be set to "disable" (completely disable DHT), "off" (do not start DHT),
+# "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
+# The default is "off". For DHT to work, a session directory must be defined.
+dht = disable
+
+# UDP port to use for DHT.
+#dht_port = 6881
+
+# Enable peer exchange (for torrents not marked private)
+peer_exchange = no
+
+# SCGI port to use
+scgi_port = 127.0.0.1:5000
+
+#
+# Advanced settings (you probably shouldn't touch these)
+#
+
+# Enable/disable files pre-allocation
+# Recommended for XFS, ext4 and btrfs filesystems, which have native fallocate syscall support
+# They will see no delay during pre-allocation and no fragmented filesystem
+# Pre-allocation on others filesystems will cause a delay but will not fragment the files
+# Only works if libTorrent was compiled with the "--with-posix-fallocate" option
+#system.file.allocate.set = yes
+
+# Set the max amount of memory space used to mapping file chunks
+# This may also be set using ulimit -m where 3/4 will be allocated to file chunks
+#max_memory_usage = 4000M
+
+# Set the umask for this process, which is applied to all files created by the program
+#umask = 0644
+
+# Changes the working directory of the process using chdir
+#working_directory = directory
+
+# Controls if the session torrent is saved when a torrent finishes
+# By default on
+#session_on_completion = yes
+
+# Controls if a lock file is created in the session directory on startup
+#session_lock = yes
+
+# Save the session files for all downloads
+#session_save =
+
+# Hash read-ahead controls how many MB to request the kernel to read
+# ahead. If the value is too low the disk may not be fully utilized,
+# while if too high the kernel might not be able to keep the read
+# pages in memory thus end up trashing.
+#hash_read_ahead = 10
+
+# Interval between attempts to check the hash, in milliseconds.
+#hash_interval = 100
+
+# Number of attempts to check the hash while using the mincore status,
+# before forcing. Overworked systems might need lower values to get a
+# decent hash checking rate.
+#hash_max_tries = 10
+
+# Always use MS_SYNC rather than MS_ASYNC when syncing chunks
+# This may be nessesary in case of filesystem bugs like NFS in linux ~2.6.13.
+# Enabling this causes more disk seeks as the kernel won't be able to schedule writes as it pleases
+#safe_sync = yes
+
+# Number of files to simultaneously keep open
+# LibTorrent dynamically opens and closes files as necessary when mapping files to memory
+# Default is based on sysconf(_SC_OPEN_MAX)
+# You probably only think you know what this option does, so don't touch it
+#max_open_files =
+
+# Number of network sockets to simultaneously keep open
+# This value is set to a reasonable value based on sysconf(_SC_OPEN_MAX)
+#max_open_sockets =
+
+# Number of sockets to simultaneously keep open
+# This value is set to 32 by default
+#max_open_http =
+
+# Adjust the send and receive buffer size for socket.
+#send_buffer_size = value, receive_buffer_size = value
+
+# Change the TOS of peer connections, by default set to throughput
+# If the option is set to default then the system default TOS is used
+# A hex value may be used for non-standard settings
+#tos = default|lowdelay|throughput|reliability|mincost, tos = hex
+
+# Enable logging of the peer handshake
+# This generates a large number of log messages, but may be useful to debug connection problems
+#handshake_log = yes
