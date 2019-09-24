@@ -6,11 +6,11 @@
 # Uncomment lines which you wish to use
 
 # Default directory to save the downloaded torrents
-#directory = ./
+directory = /data
 
 # Default session directory
 # NOTE: Make sure you don't run multiple instances of rtorrent using the same session directory
-#session = ./session
+session = /session
 
 # Load ruTorrent plugins when rtorrent starts
 # See code.google.com/p/rutorrent/wiki/Plugins#Starting_plugins_with_rtorrent
